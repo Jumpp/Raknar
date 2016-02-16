@@ -1,0 +1,117 @@
+div > h1 {
+font-size: 20px;
+font-family: Arial;
+text-align: center;
+
+}
+div > p {
+    
+font-size: 18px;
+font-family: cursive;
+text-align: center;
+    
+}
+
+
+
+
+#customerSearch {
+    
+font-family: inherit;
+font-size: 16px;
+color: cadetblue;
+position: absolute;
+top: 88px;
+left: 5%;
+height: 33px;
+margin: auto;
+width: 65%;
+border: 1px solid blue;
+
+
+
+}
+
+#newCustomer {
+    
+font-family: inherit;
+font-size: 16px;
+color: cadetblue;
+position: relative;
+width: 280px;
+height: 80px;
+text-align: center;
+margin: auto;
+width: 100%;
+
+
+
+
+}
+
+#newOrder {
+    
+    
+    font-family: inherit;
+font-size: 16px;
+text-align: center;
+color: cadetblue;
+position: static;
+width: 280px;
+height: 80px;
+margin: auto;
+width: 100%;
+
+
+}
+
+#searchOrders {
+    
+    
+ font-family: inherit;
+font-size: 16px;
+text-align: center;
+color: cadetblue;
+position: static;
+width: 280px;
+height: 80px;
+margin: auto;
+width: 100%;
+
+    
+    
+}
+
+#doSearch {
+    
+    
+    font-family: inherit;
+font-size: 16px;
+text-align: center;
+color: cadetblue;
+position: absolute;
+    top: 88px;
+    right: 10%;
+width: 84px;
+height: 33px;
+border: 1px solid black;
+border-radius: 8px;
+background-color: white;
+
+
+}
+
+#settings {
+    
+    
+font-family: inherit;
+font-size: 16px;
+text-align: center;
+color: cadetblue;
+position: static;
+width: 280px;
+height: 80px;
+margin: auto;
+width: 100%;
+
+}

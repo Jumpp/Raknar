@@ -1,0 +1,21 @@
+#back {
+    
+    position: fixed;
+    left: 75%;
+    top: 0%;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 12px;
+    width: 80px;
+    height: 30px;
+    border: 1px solid black;
+    z-index: 1;
+    
+}
+
+h1 {
+    
+    text-align: center;
+    font-family: Arial, inherit;
+    font-size: 20px;
+}
