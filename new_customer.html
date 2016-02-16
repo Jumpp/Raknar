@@ -5,7 +5,8 @@
     <title>New Customer</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="new_customer.css" type="text/css"/>
-    <script src="http://debug-software.intel.com/target/target-script-min.js#pVJONsERdpAcP9wcnDz9DwlBMdDsMp6qHmRyOTihntg"></script>
+    <script type="text/javascript" src="aloitus.js"></script>
+   <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#pVJONsERdpAcP9wcnDz9DwlBMdDsMp6qHmRyOTihntg"></script>-->
     </head>
 
 <body>
@@ -14,131 +15,142 @@
     </br>
     <a href="aloitus_treeni.html"><button type="button" id="back">Back</button></a>
 
-    <!--<div><p>Customer:</p><input type="text" id="customer"/></div>-->
-    
-   <!-- <table id="customer">
-   
-       <th>
-        
-    <td>customer:<input type="text"/></td>
-    </tr>
-    <br>
-    </br>
-    <tr>
-    <td>email:<input type="text"/></td>
-    <br>
-</br>
-    <td>phone:<input type="text"/></td>
-    <br>
-</br>
-    <td>weight in kg:<input type="text"/></td>
-    <br>
-</br>
-   <td> height in cm:<input type="text"/></td>
-    <br>
-</br>
-    <td>stance:<input type="text"/></td>
-<br>
-</br>
-    <td>shoulder:<input type="text"/></td>
-    <br>
-</br>
-    <td>chest:<input type="text"/></td>
-    <br>
-</br>
-    <td>stomach:<input type="text"/></td>
-    <br>
-</br>
-    <td>seat:<input type="text"/></td>
-    <br>
-</br>
-    
-    <br>
-</br>
-    <td>full shoulder:<input type="text"/></td>
-    <br>
-</br>
-    <td>half shoulder(L):<input type="text"/></td>
-    <br>
-</br>
-   <td> half shoulder(R):<input type="text"/></td>
-    <br>
-</br>
-    <td>back width:<input type="text"/></td>
-    <br>
-</br>
-    <td>half back length:<input type="text"/></td>
-    <br>
-</br>
-    <td>full chest:<input type="text"/></td>
-    <br>
-</br>
-
-</tr>
-    
-    
-    
-    </table>-->
+  
     
     
     <ul>
-    <li>customer:<input type="number"/></li>
+        <li>customer: <input type="text"/></li>
         
-        <li>e-mail:<input type="number"/></li>
+        <li>e-mail: <input type="text"/></li>
             
-            <li>phone:<input type="number"/></li>
+        <li>phone: <input type="number"/></li>
                 
-                <li>weight in kg:<input type="number"/></li>
+        <li>weight in kg: <input type="number"/></li>
                     
-                    <li>height in cm:<input type="number"/></li>
+        <li>height in cm: <input type="number"/></li>
                         
-                        <li>stance:<input type="number"/></li>
-                            
-                            <li>shoulder:<input type="number"/></li>
-                                
-                                <li>chest:<input type="number"/></li>
-                                
-        <li>stomach:<input type="number"/></li>
+               <!--valikot: -->  
         
-        <li>seat:<input type="number"/></li>
+     
+        
+        <li>stance: <select id="stance">
+            <option value="stance" default>Stance</option>
+            <option value="bad">Bad</option>
+            <option value="worse">Worse</option>
+            </select></li>
+    
+        
+                            
+        <li>shoulder: <select id="shoulder">
+            <option value="shoulder" default>Shoulder</option>
+            <option value="-"></option>
+            
+            </select></li>
+                                
+        <li>chest: <select id="chest">
+            <option value="chest" default>Chest</option>
+            <option value="-"></option>
+            
+            </select></li>
+                                
+        <li>stomach: <select id="stomach">
+            <option value="stomach" default>Stomach</option>
+            <option value="-"></option>
+            
+            </select> </li>
+        
+        <li>seat: <select id="seat">
+            <option value="seat" default>Seat</option>
+            <option value="-"></option>
+            
+            
+            </select></li>
+        
+         <!--  valikot -->
         <br>
         </br>
         
-        <li>full shoulder:<input type="number"/></li>
+        <li>full shoulder: <input type="number"/></li>
         
-        <li>half shoulder(L):<input type="number"/></li>
+        <li>half shoulder(L): <input type="number"/></li>
         
-        <li>half shoulder(R):<input type="number"/></li>
+        <li>half shoulder(R): <input type="number"/></li>
         
-        <li>back width:<input type="number"/></li>
+        <li>back width: <input type="number"/></li>
         
-        <li>half back length:<input type="number"/></li>
+        <li>half back length: <input type="number"/></li>
         
-        <li>full chest:<input type="number"/></li>
+        <li>full chest: <input type="number"/></li>
         
-        <li>waist(stomach):<input type="number"/></li>
-    
+        <li>waist(stomach): <input type="number"/></li>
         
+        <li>Trouser waist: <input type="number"/</li>
+            
+        <li>Hips: <input type="number"/</li>
+        
+        <li>Neck: <input type="number"/</li>
+               
+        <li>Front chest width: <input type="number"/</li>
+                   
+         <li>Full jacket length(Suit): <input type="number"/</li>
+                       
+         <li>Full jacket length(coat): <input type="number"/</li>
+                              
+        <li>Left sleeve: <input type="number"/</li>
+                                     
+         <li>Right sleeve: <input type="number"/</li>
+                                            
+         <li>Bicep: <input type="number"/</li>
+            
+           <li>Wrist: <input type="number"/</li>
+               
+           <li>Trouser outseam: <input type="number"/</li>
+               
+               <li>Leg opening: <input type="number"/</li>
+                   
+               <li>Knee: <input type="number"/</li>
+                   
+               <li>Thigh: <input type="number"/</li>
+                   
+               <li>Crotch: <input type="number"/</li>
+                   
+               <li>Above knee: <input type="number"/</li>
+                  <form method="post" action="data.html"> 
+               <li>Calf: <input type="number"/</li>
+                   </form>
+        <form action="grundstrom.stefan93@gmail.com" method="get">
+                   First name: <input type="text" name="fname" id="a"><br>
+                    Last name: <input type="text" name="lname" id="b"><br>
+            <input type="submit" value="Submit">
+            <output name="x" ></output>
+                            
+                   
+                   
+                   </form>
+                   
+
         
         
         
     </ul>
 <br></br>
 
-<form method="get" action="tunnus_ja_salasana.html">
+<!--<form method="get" action="tunnus_ja_salasana.html">
     <label>käyttäjätunnus: <input type="text" name="tunnus"/></label>
     <label>Salasana: <input type="password" name="salasana"/></label>
 <input type="submit"/>
 
 
-</form>
+</form>-->
 <br></br>
 
-<a href="Select_item.html"> <button type="submit" id="saveOrder">Save & Order</button></a>
+<!--<input type="button" onclick="confirm()" value="sure" id="sure"/>-->
+
+<a href="Select_item.html"><button type="submit" id="saveOrder"  />Save & Order</button></a>
 
 
     
-    
+   
     
     
     
