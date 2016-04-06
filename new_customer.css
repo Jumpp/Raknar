@@ -1,6 +1,13 @@
 h1 {
     
     text-align: center;
+    font-family: Arial, inherit;
+    font-size: 2rem;
+    color: white;
+}
+body {
+    background-color: #595959;
+    
 }
 
 
@@ -30,15 +37,77 @@ ul {
     
     list-style-type: none;
     padding: 0;
+   
 }
 li {
     
     text-align: left;
-    color: blueviolet;
+    color: white;
+    font-family: Arial, inherit;
     width: auto;
-    height: 20px;
+    height: 1em;
+    margin: 0.7em;
+   
+    
+    
     
 }
+input {
+    position: absolute;
+    right: 20%;
+    
+    border: 0.1em solid #dcdcdc;
+    
+    
+}
+
+input[type=text]:focus {
+    
+    width: 60%;
+    padding-right: 5px;
+    outline: none;
+    border: 2px solid #999999;
+    border-radius: 5px;
+    background-color: white;
+    font-family: Arial, cursive, inherit;
+    font-size: 1em;
+    background-position: 20px-12px;
+    background-repeat:no-repeat;
+    position: absolute;
+    right: 2%;
+    
+}
+
+
+input[type=number]:focus {
+    
+    width: 60%;
+    padding-right: 5px;
+    outline: none;
+    border: 2px solid #999999;
+    border-radius: 5px;
+    background-color: white;
+    font-family: Arial, cursive, inherit;
+    font-size: 1em;
+    background-position: 20px-12px;
+    background-repeat:no-repeat;
+    position: absolute;
+    right: 2%;
+    margin-left: inherit;
+}
+label {
+    margin-right: 0.3em;
+    
+}
+
+
+select {
+    position: absolute;
+    right: 20%;
+    width: 10em;
+    
+}
+
 #saveOrder {
     
     float: left;
@@ -52,7 +121,8 @@ li {
 #back {
     
     position: fixed;
-    left: 75%;
+ /*   left: 75%;*/
+    left: 60%;
     top: 0%;
     text-align: center;
     border-radius: 8px;
@@ -82,5 +152,91 @@ select {
     padding: 0px;
     border: 1px solid black; 
 }
+#confirm {
+    
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 8px;
+    text-align: center;
+    position: absolute;
+    left: 10%;
+  
+}
 
+    
+
+/*initial menu*/
+.menu {
+    
+    right: 100%;/*-285px;*/
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    background: #202024 repeat left top;
+    
+}
+.menu ul {
+    
+    
+    border-top: 1px solid #636266;
+    font-family: sans-serif;
+    line-height: 30px;
+    padding-bottom: 3px;
+    padding-left: 20px;
+    padding-top: 3px;
+}
+.menu a {
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    
+    
+}
+.icon-close {
+    
+    cursor: pointer;
+    padding-left: 5%;
+    padding-top: 5%;
+  
+}
+.icon-menu {
+    
+    color: black;
+    cursor: pointer;
+    font-family: cursive;
+    font-size: 16px;
+    /*padding-bottom: 25px;
+    padding-left: 25px;
+    padding-top: 25px;*/
+    text-decoration: none;
+    text-transform: uppercase;
+    position: fixed;
+    left: 85%;
+    top: 0%;
+}
+.icon-menu i {
+    
+    margin-left: 5px;
+    
+}
+#close {
+    height: 10%;
+    width: 10%;
+    
+}
+#form {
+    
+    position: absolute;
+    
+    background-color: aquamarine;
+}
+
+    
+
+#inputit {
+    position: inherit;
+    
+    color: brown;
+}
 
