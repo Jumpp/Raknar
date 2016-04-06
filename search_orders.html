@@ -1,0 +1,111 @@
+<!Doctype html>
+<html>
+<head>
+    <title>Search orders</title>
+     <meta charset="utf-8">
+    
+    <link rel="stylesheet" href="search_orders.css" type="text/css"/>
+   
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script><!--linkkaa firebaseen-->
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    
+    <script type="text/javascript" src="search_orders.js"></script>
+     
+</head>
+
+<body>
+    
+    <h1><em>Search Orders</em></h1>
+    <br/>
+    
+    <a href="aloitus_treeni.html"><button type="button" id="back">Back</button></a>
+    <br/>
+    
+    <div id="orderSearch"><input id="searchOrders" type="text" placeholder="Search Orders"></div>
+    <br/>
+    <button type="button" id="confirmSearchOrders">Search</button>
+    <br/>
+    <div id="showOrders"></div>
+    
+    
+    <!--  <div id="messageDiv">message</div>
+    
+    <input type="text" id="nameInput" placeholder="Name"/>
+
+    <input type="text" id="messageInput" placeholder="Message"/>
+
+    <input type="text" id="haku" placeholder="Haku"/>
+
+    <div id="anotherMessage">another message</div>
+<br/>-->
+
+   <!-- <script>
+        var myDataRef = new Firebase("https://crackling-torch-3342.firebaseio.com");
+        $('#messageInput').keypress(function(e) {
+           if (e.keyCode== 13) {
+               var name = $('#nameInput').val();
+               var text = $('#messageInput').val();
+               var hakuu = $('#haku').val();
+               myDataRef.push({name: name, text: text, jotain: hakuu});
+               $('#messageInput').val('');
+               
+           } 
+            
+        });
+
+        myDataRef.on('child_added', function(snapshot) {
+            var message = snapshot.val();
+            displayChatMessage(message.name, message.text, message.jotain);
+           
+            
+        });
+        
+        function displayChatMessage(name, text, jotain) {
+          
+            $('<div/>').text(text).prepend($('<em/>').text(name+': ' )).appendTo($('#messageDiv'));
+            $('messageDiv')[0].scrollTop= $('#messageDiv')[0].scrollHeight;
+                
+        };
+        
+               
+            
+            
+    
+       
+</script>-->
+    
+ <!--<script>
+
+ var ref = new firebase("https://crackling-torch-3342.firebaseio.com");
+     $('#haku').keypress(function(e) {
+        if (e.keyCode==13) {
+            
+     
+        ref.orderByChild("name").equalTo(name).on("child_added", function(snapshot) {
+            console.log(snapshot.key());
+        }
+                                                  });
+        });
+
+</script>-->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</body>
+
+
+
+</html>

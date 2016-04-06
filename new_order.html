@@ -5,6 +5,7 @@
     <title>New order</title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="new_order.css" type="text/css"/>
+    <script type="text/javascript" src="new_order.js"></script>
     <script src="http://debug-software.intel.com/target/target-script-min.js#pVJONsERdpAcP9wcnDz9DwlBMdDsMp6qHmRyOTihntg"></script>
 </head>
 <body>
@@ -13,10 +14,28 @@
     
      <a href="aloitus_treeni.html"><button type="button" id="back">Back</button></a>
     
-    <form><div><input id="searchCustomer" placeholder="Search customer" type="text"/><br></div></form>
+    <form><div><input id="searchCustomer" placeholder="Search customer" type="text"/><br></div>
+    <div id="oldCustomer"></div>
+    </form>
+    <br/>
+    <form>
+    <select id="chooseItem">
+        <option value="Add Item" default>Add Item</option>
+        <option value="suit">Suit</option>
+        <option value="jacket">Jacket?</option>
+        <option value="shirt">Shirt</option>
+    
+    </select>
+        <br/>
+        <button type="button" id="addItem">Add</button>
+        <br/>
+        <div id="lisäys"></div>
+    </form>
     
     
     
+    
+    <button type="button" id="sendOrder" onClick="vahvistus()">Send order</button>
     
     
     

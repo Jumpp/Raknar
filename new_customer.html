@@ -4,26 +4,74 @@
 <head>
     <title>New Customer</title>
     <meta charset="utf-8">
+    <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes"/>
+    
     <link rel="stylesheet" href="new_customer.css" type="text/css"/>
-    <script type="text/javascript" src="aloitus.js"></script>
-   <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#pVJONsERdpAcP9wcnDz9DwlBMdDsMp6qHmRyOTihntg"></script>-->
+   <script type="text/javascript" src="aloitus.js"></script>
+    <script type="text/javascript" src="jQuery.js"></script>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script><!--linkkaa firebaseen-->
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    
+     <script src='xhr.js'></script>
+    
+    
+    
+    
+    
+    
+   <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>-->
+   <!-- <script type="text/javascript" src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script>-->
+   
+    <script src="http://debug-software.intel.com/target/target-script-min.js#pVJONsERdpAcP9wcnDz9DwlBMdDsMp6qHmRyOTihntg"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    
+<script type="text/javascript" src="new_customer.js"></script>
+    
     </head>
 
 <body>
     <h1><em>New Customer</em></h1>
-    <br>
-    </br>
+    <br/>
+    
     <a href="aloitus_treeni.html"><button type="button" id="back">Back</button></a>
+    
+    <div class="menu">
+    <!--menu icon-->
+    <div class="icon-close">
+        <img src="flavour-extended-png/button_delete_red.png" id="close"> 
+        </div>
+     <!--Menu-->
+        <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="#">Help</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Save & Exit</a></li>
+        <li><a href="#">Cancel</a></li>
+        </ul>
+    </div>
+    <!-- Main body-->
+    
+    <div class="icon-menu">
+    <i class="bars"></i>
+        Menu
+    </div>
+    </div>
+  
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="aloitus.js"></script>
 
   
     
-    
-    <ul>
-        <li>customer: <input type="text"/></li>
+
+    <ul class="lists" id="lista">
+        <li><label for="customer">customer <input type="text" id="customer"/></label></li>
         
-        <li>e-mail: <input type="text"/></li>
+        
+        <li>e-mail: <input type="text" id="email"/></li>
             
-        <li>phone: <input type="number"/></li>
+        <li>phone: <input type="number" id="phone"/></li>
                 
         <li>weight in kg: <input type="number"/></li>
                     
@@ -67,8 +115,8 @@
             </select></li>
         
          <!--  valikot -->
-        <br>
-        </br>
+        <br/>
+        
         
         <li>full shoulder: <input type="number"/></li>
         
@@ -86,54 +134,189 @@
         
         <li>Trouser waist: <input type="number"/</li>
             
-        <li>Hips: <input type="number"/</li>
+        <li>Hips: <input type="number"/></li>
         
-        <li>Neck: <input type="number"/</li>
+        <li>Neck: <input type="number"/></li>
                
-        <li>Front chest width: <input type="number"/</li>
+        <li>Front chest width: <input type="number"/></li>
                    
-         <li>Full jacket length(Suit): <input type="number"/</li>
+<li><label>Full jacket length(Suit) <input type="number"/></label></li>
                        
-         <li>Full jacket length(coat): <input type="number"/</li>
+         <li>Full jacket length(coat): <input type="number"/></li>
                               
-        <li>Left sleeve: <input type="number"/</li>
+        <li>Left sleeve: <input type="number"/></li>
                                      
-         <li>Right sleeve: <input type="number"/</li>
+         <li>Right sleeve: <input type="number"/></li>
                                             
-         <li>Bicep: <input type="number"/</li>
+         <li>Bicep: <input type="number"/></li>
             
-           <li>Wrist: <input type="number"/</li>
+           <li>Wrist: <input type="number"/></li>
                
-           <li>Trouser outseam: <input type="number"/</li>
+           <li>Trouser outseam: <input type="number"/></li>
                
-               <li>Leg opening: <input type="number"/</li>
+               <li>Leg opening: <input type="number"/></li>
                    
-               <li>Knee: <input type="number"/</li>
+               <li>Knee: <input type="number"/></li>
                    
-               <li>Thigh: <input type="number"/</li>
+               <li>Thigh: <input type="number"/></li>
                    
-               <li>Crotch: <input type="number"/</li>
+               <li>Crotch: <input type="number"/></li>
                    
-               <li>Above knee: <input type="number"/</li>
-                  <form method="post" action="data.html"> 
-               <li>Calf: <input type="number"/</li>
+               <li>Above knee: <input type="number"/></li>
+               <!--   <form method="post" action="data.html"> -->
+               <li>Calf: <input type="number" id="calf"/></li>
+               
+                     <!-- <input type="button" value="calffi" onClick="hae()">
                    </form>
-        <form action="grundstrom.stefan93@gmail.com" method="get">
-                   First name: <input type="text" name="fname" id="a"><br>
+                   <form>-->
+      <!--  <form action="data.html" method="get">-->
+            <!--       First name: <input type="text" name="fname" id="a" ><br>
                     Last name: <input type="text" name="lname" id="b"><br>
-            <input type="submit" value="Submit">
-            <output name="x" ></output>
+            <input type="button" value="Submit" onClick="kirjoita()" >-->
+               
+                    
+     
+         
+               
                             
                    
                    
-                   </form>
-                   
+                  
 
         
         
         
     </ul>
+    <input id="haeData" placeholder="haeDataa"/> <button type="button" id="haeDataNappula">Hae Dataa Tästä</button>
+<br/>
+
+  <div id="messageDiv">message</div>
+<br/>
+    
+   <!-- <input type="text" id="nameInput" placeholder="Name"/>
 <br></br>
+
+
+    <input type="text" id="messageInput" placeholder="Message"/>-->
+<br/>
+
+<button type="button" id="tiedot">tiedot talteen</button>
+
+<br/>
+
+<script>
+        var myDataRef = new Firebase("https://crackling-torch-3342.firebaseio.com");
+        $('#tiedot').click(function() {
+          // if (e.keyCode== 13) {
+               var name = $('#customer').val();
+              var hae = $('#haeData').val();
+            
+              // var text = $('#messageInput').val();
+               str= '';
+               $("input[type='text']").each(function() {
+                  str=str + '|' + $(this).val(); 
+                 
+               num= '';                             
+                $("input[type='number']").each(function() {
+                   num= num + '|' + $(this).val();
+                    
+               stance= '';
+                   stance= $("#stance").val();
+                    
+                                                   
+                                                                              
+               });
+                                            
+                
+               });
+               myDataRef.push({name: name, inputit: str, inputti: num, stance: stance})= $(this).serializeObject();//text: text(poistettu)
+               $('#customer').val('');
+               
+           }); 
+    
+  /*   myDataRef.on('child_added', function(snapshot){
+         var message = snapshot.val();
+         var vertaus = hae.val();
+       
+         if(name== hae) {
+                 display();
+             
+         }
+         
+     
+         
+     });
+    function display() {
+        // $('<div/>').text(name).appendTo($('#messageDiv'));
+        $('').appendTo('#messageDiv');
+        $('messageDiv')[0].scrollTop= $('#messageDiv')[0].scrollHeight;
+    };*/
+            
+      //  });
+
+       /* myDataRef.orderByChild("customer").on('child_added', function(snapshot) {
+            var message = snapshot.val();
+           // displayChatMessage(message.name, message.text);
+          // displayChatMessage(message.key()+ "on" message.val().customer);
+            console.log(message.key()+ "on" + message.customer);
+            
+        });*/
+        
+      /*  function displayChatMessage(name, text) {
+            $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messageDiv'));
+            $('messageDiv')[0].scrollTop= $('#messageDiv')[0].scrollHeight;
+            
+        };*/
+    
+      // Save user's info to Firebase
+       /* form.on('submit', function (e) {
+            e.preventDefault();
+            var userInfo = $(this).serializeObject();
+
+            userRef.set(userInfo, function onComplete() {
+
+                // show the message if write is successful
+                showAlert({
+                    title: 'Successfully saved!',
+                    detail: 'You are still logged in',
+                    className: 'alert-success'
+                });
+
+            });
+        });*/
+
+    
+</script>
+<!--<script>
+    
+       var dataSearch = new Firebase("https://crackling-torch-3342.firebaseio.com");
+        $('#haeDataNappi').click(funcito() {
+                            var hae = $('#haeData').val();
+    if(hae === message.name) {
+        display(name);
+        
+    };
+                            
+                            });
+    
+    function display(name) {
+        $('<div/>').text(name).appendTo($('messageDiv'));
+        
+    };
+    
+    </script>-->
+
+                 
+<br/>
+<button id="tal">tallenna</button>
+        <h2>kopio: <label id="kopio"></label></h2> 
+        <button id="pois">poista</button>
+
+<!--<form name="frm" method="POST" action="random_tekstia.txt">
+ <input type="text" name="name" id="name" value="" />
+ <input type="text" name="last_name" id="last_name" value="" />
+ <input type="submit" name="Update" id="update" value="Update" />
+</form>--> <!--postilla toimiva lähetys-->
 
 <!--<form method="get" action="tunnus_ja_salasana.html">
     <label>käyttäjätunnus: <input type="text" name="tunnus"/></label>
@@ -142,16 +325,196 @@
 
 
 </form>-->
+<br/>
+
+
+
+<br/>
+
+<!--<button type="button" onclick="confirm()" value="sure" id="sure"/>-->
+
+<!--<a href="Select_item.html"><button type="submit" id="saveOrder" onClick="confirm()" />Save & Order</button></a>-->
+
+<!--<form id="form" onsubmit="return false;">
+    <input  type="text" id="userInput" />
+    <input type="text" id="userInput"/>
+    <input  type="submit" onclick="othername();" />
+</form>-->
+<br/>
+ <!--   
+<table>
+	<tr><td>Text to Save:</td></tr>
+	<tr id="inputit">
+		<td colspan="3">
+        <td><label>jalkojen pituus: <input  type="number" class="inputTextToSave" id="inputTextToSave"/></label>
+            <label>kasien pituus: <input type="number" class="inputTextToSave"/></label>
+		</td>
+	
+        
+        </td>
+    </tr>
+	<tr>
+		<td>Filename to Save As:</td>
+		<td><input id="inputFileNameToSaveAs"></input></td>
+		<td><button onclick="saveTextAsFile()">Save Text to File</button></td>
+	</tr>
+	<tr>
+		<td>Select a File to Load:</td>
+		<td><input type="file" id="fileToLoad"></td>
+		<td><button onclick="loadFileAsText()">Load Selected File</button><td>
+	</tr>
+</table>
+
+<script type='text/javascript'>
+
+function saveTextAsFile()
+{
+	var textToWrite = "";
+var inputsTextToSave = document.getElementsByClassName("inputTextToSave");
+for (var i = 0; i < inputsTextToSave.length; i++)
+{
+var inputTextToSave = inputsTextToSave[i];
+var textFromInput = inputTextToSave.value;
+textToWrite += textFromInput;
+}
+   
+	var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+	var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
+    
+
+	var downloadLink = document.createElement("a");
+	downloadLink.download = fileNameToSaveAs;
+	downloadLink.innerHTML = "Download File";
+	if (window.webkitURL != null)
+	{
+		// Chrome allows the link to be clicked
+		// without actually adding it to the DOM.
+		downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+	}
+	else
+	{
+		// Firefox requires the link to be added to the DOM
+		// before it can be clicked.
+		downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+		downloadLink.onclick = destroyClickedElement;
+		downloadLink.style.display = "none";
+		document.body.appendChild(downloadLink);
+	}
+
+	downloadLink.click();
+    
+    
+}
+
+function destroyClickedElement(event)
+{
+	document.body.removeChild(event.target);
+}
+
+function loadFileAsText()
+{
+	var fileToLoad = document.getElementById("fileToLoad").files[0];
+
+	var fileReader = new FileReader();
+	fileReader.onload = function(fileLoadedEvent) 
+	{
+		var textFromFileLoaded = fileLoadedEvent.target.result;
+		document.getElementById("inputTextToSave").value = textFromFileLoaded;
+        //document.getElementsByClassName("inputTextToSave").value = textFromFileLoaded;
+       
+	};
+	fileReader.readAsText(fileToLoad, "UTF-8");
+}
+
+</script>
+
 <br></br>
 
-<!--<input type="button" onclick="confirm()" value="sure" id="sure"/>-->
 
-<a href="Select_item.html"><button type="submit" id="saveOrder"  />Save & Order</button></a>
+
+
+<input type="button" onClick="vahvistus()" value="confirm" id="confirm"/>-->
+
+<br/>
+
+
+<!--toimiva systeemi alla: -->
+
+<!--<table>
+	<tr><td>Text to Save:</td></tr>
+	<tr>
+		<td colspan="3">
+			<textarea id="inputTextToSave" style="width:300px;height:100px"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td>Filename to Save As:</td>
+		<td><input id="inputFileNameToSaveAs"></input></td>
+		<td><button onclick="saveTextAsFile()">Save Text to File</button></td>
+	</tr>
+	<tr>
+		<td>Select a File to Load:</td>
+		<td><input type="file" id="fileToLoad"></td>
+		<td><button onclick="loadFileAsText()">Load Selected File</button><td>
+	</tr>
+</table>
+
+<script type='text/javascript'>
+
+function saveTextAsFile()
+{
+	var textToWrite = document.getElementById("inputTextToSave").value;
+	var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+	var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
+
+	var downloadLink = document.createElement("a");
+	downloadLink.download = fileNameToSaveAs;
+	downloadLink.innerHTML = "Download File";
+	if (window.webkitURL != null)
+	{
+		// Chrome allows the link to be clicked
+		// without actually adding it to the DOM.
+		downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+	}
+	else
+	{
+		// Firefox requires the link to be added to the DOM
+		// before it can be clicked.
+		downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+		downloadLink.onclick = destroyClickedElement;
+		downloadLink.style.display = "none";
+		document.body.appendChild(downloadLink);
+	}
+
+	downloadLink.click();
+}
+
+function destroyClickedElement(event)
+{
+	document.body.removeChild(event.target);
+}
+
+function loadFileAsText()
+{
+	var fileToLoad = document.getElementById("fileToLoad").files[0];
+
+	var fileReader = new FileReader();
+	fileReader.onload = function(fileLoadedEvent) 
+	{
+		var textFromFileLoaded = fileLoadedEvent.target.result;
+		document.getElementById("inputTextToSave").value = textFromFileLoaded;
+	};
+	fileReader.readAsText(fileToLoad, "UTF-8");
+}
+
+</script>-->
+
+
 
 
     
    
-    
+    <input type="button" onClick="vahvistus()" value="confirm" id="confirm"/>
     
     
     

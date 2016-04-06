@@ -1,31 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html manifest="http://www.yourwebsite.com/quiz/quiz.appcache">
 
 <head>
 <title>treenausta</title>    
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    
     <link rel="stylesheet" href="aloitus.css" type="text/css"/>
     <script src="http://debug-software.intel.com/target/target-script-min.js#pVJONsERdpAcP9wcnDz9DwlBMdDsMp6qHmRyOTihntg"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript" src="javascript.js"></script>
 </head>
 
 <body>
     
     <div><h1>RAKNAR</h1></div>
-    <div><p>Search for customer</p><input type="search" id="customerSearch"/><a href="search.html"><button type="submit" id="doSearch">Search</button></a></div>
+    <input type="search" id="customerSearch" placeholder="Search for customer"/><a href="search.html"><!-- <button type="submit" id="doSearch">Search</button>--></a></div>
     
     
     <br>
 </br>
-    <a href="new_customer.html"><button type="button" id="newCustomer">New Customer</button></a>
+    <a href="new_customer.html"><button onclick="vaihto();" type="button" id="newCustomer">New Customer</button></a>
     <br>
 </br>
 <a href="new_order.html"><button type="button" id="newOrder">New Order</button></a>
     <br>
 </br>
-    <button type="button" id="searchOrders">Search Orders</button>
+<a href="search_orders.html"><button type="button" id="searchOrders">Search Orders</button></a>
 <br>
 </br>
-    <button type="button" id="settings">Settings</button>
+<a href="settings.html"><button type="button" id="settings">Profile</button></a>
+<br></br>
+<!--<a href="measurements.html"><button type="button" id="measure">Measurements</button></a>-->
     
     
     
