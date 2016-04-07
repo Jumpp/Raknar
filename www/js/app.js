@@ -10,10 +10,6 @@
             form: 'frmLogin',
             controller: 'login'
         },
-            '#/logout': {
-            form: 'frmLogout',
-            controller: 'logout'
-        },
             '#/profile': {
             form: 'frmProfile',
             controller: 'profile',
@@ -24,8 +20,12 @@
             controller: 'customers',
             authRequired: true // must be logged in to get here
         },
-       		'#/SearchCustomers': {
+       		'#/search': {
             form: 'frmSearchCustomers',
+            controller: 'searchCustomers',
+            authRequired: true // must be logged in to get here
+        },
+            '#/main': {
             controller: 'searchCustomers',
             authRequired: true // must be logged in to get here
         }
@@ -269,6 +269,10 @@
         });
 
     };
+    
+    controller.main = function () {
+        $("#doSearch").click( routeTo() )
+    }
 
     /// Routing
     ////////////////////////////////////////
@@ -323,7 +327,7 @@
 
     Path.map("#/").to(prepRoute);
     Path.map("#/logout").to(prepRoute);
-    Path.map("#/register").to(prepRoute);
+    Path.map("#/newOrder").to(prepRoute);
     Path.map("#/profile").to(prepRoute);
     Path.map("#/customers").to(prepRoute);
     Path.root("#/");
