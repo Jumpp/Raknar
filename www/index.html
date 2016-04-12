@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+	 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	 <link rel="stylesheet" type="text/css" href="css/Normalize.css">
+          
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+ 
+    <script src ="js/app.js"></script>
+    <script src="intelxdk.js"></script>
+    <script src="cordova.js"></script>
+    <script src="xhr.js"></script>
+    <script src="xdk/init-dev.js"></script>
+    <script type="application/javascript" src="lib/jquery.min.js"></script>
+    <script type="application/javascript" src="https://cdn.firebase.com/js/client/1.1.1/firebase.js"></script>
+    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/path.js/0.8.4/path.min.js"></script>
+    <script type="application/javascript" src="js/app.js"></script>
+    <script type="application/javascript" src="js/init-app.js"></script>
+    <script type="application/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.0.0/jquery.serialize-object.compiled.js"></script>
+    <script type="application/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+    
+
+      
+    
+      
+    
+      
+
+<header class="navbar navbar-static-top navbar-inverse" id="top" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse"> <span class="sr-only">Toggle navigation</span>
+ <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+
+            </button> <a href="#" class="navbar-brand">Raknar</a>
+
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+                <li> <a href="#/">Login</a></li>
+                <li> <a href="#/customer">Customer</a></li>
+                <li> <a href="#/search">Search</a></li>
+                <li> <a href="#/profile">Profile</a></li>
+                <li> <a href="#/logout">Logout</a></li>
+                <li> <a href="#/neworder">New Order</a></li>
+                <li> <a href="#/main">Main</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+</head>
+<body>
+	
+<div id="container" class="container">
+    
+    <!-- MAIN -->
+    <form class="form-vertical" id='frmMain' role="form">    
+  
+		 
+ 		<div class="container">
+		
+		<h1>RAKNAR</h1>
+			
+			<ul>		
+		<li>	<br><a href="#/customer">New Customer</a><br>   </li>
+				
+	<li>		<br><a href="#/neworder">New Order</a> <br> </li>
+				
+	<li>		<br><a href="#/search">Search</a><br></li>
+				
+	<li>		<br><a href="#/profile">Profile</a><br></li>
+				
+	<li>		<br><a href="https://upload.wikimedia.org/wikipedia/en/5/5f/Original_Doge_meme.jpg">Measuring Guide</a><br></li>
+				
+	<li>		<br><a href="#/logout">Logout</a><br> </li>
+				
+		 </ul>
+				</div> 
+			</form>	
+			
+	<!--	 
+		<a href="#/customer"><button type="button" class="btn btn-primary" id="newCustomer">New Customer</button></a>   
+				<br>
+			<br>
+		<a href="#/neworder"><button type="button" id="newOrder" class="btn btn-primary">New Order</button></a>     
+				<br>
+			<br>
+ 	   <a href="#/search"><button type="button" id="search" class="btn btn-primary">Search customers or orders</button></a>
+				<br>
+			<br>
+		<a href="#/profile"><button type="button" id="profile" class="btn btn-primary">Profile</button></a>
+				<br>
+			<br>
+		<a href="C:\Projects\raknar\www\guide.pdf"><button type="button" id="guide" class="btn btn-info">Measuring Guide</button></a>
+				<br>
+			<br>
+		<a href="#/logout"><button type="button" id="logout" class="btn btn-danger">Logout</button></a> 
+		    </div>       
+    </form>
+    -->
+	<!-- /MAIN MENU -->      
+   <!-- LOGIN -->
+    <form id="frmLogin" role="form">
+         <h2>Login</h2>
+
+        <div class="form-group">
+            <label for="txtEmail">Email address</label>
+            <input type="email" class="form-control" id="txtEmail" placeholder="Enter email" name="email" />
+        </div>
+        <div class="form-group">
+            <label for="txtPass">Password</label>
+            <input type="password" class="form-control" id="txtPass" placeholder="Password" name="password" />
+        </div>
+        <button type="submit" class="btn btn-default btn-block">Login</button>
+        <br />
+        <br />
+        
+    
+    </form>
+      </div>
+    <!-- / LOGIN -->
+    <!-- LOGOUT -->
+    <form id="frmLogout" role="form">
+         <h2>You are logged out!</h2>
+
+    </form>
+    <!-- / LOGOUT -->
+    <!-- SEARCH -->
+    
+    
+     <form id="frmSearch" role="form">    
+        <h2>Search</h2>
+
+        <a href="#/main"><button type="button" id="back">Back</button></a>
+    <br>
+    
+    
+    <div id="databaseSearch">
+        <form id=searchForm role=form>
+        <input id="searchBox" type="text" placeholder="Search">
+
+    <br>
+    <button type="submit" id="executeSearch">Search</button>
+    <br>
+    <div id="searchContainer">
+    <!-- This div will change to display the search results -->
+        
+    </div>
+			
+		 
+	</form>
+		   </div>
+
+		 
+    <!-- / SEARCH -->
+   <!-- CUSTOMER -->
+   
+	<form id="frmCustomer" role="form">
+
+	<h2> Customer </h2>
+		
+        <a href="#/main"><button type="button" id="back">Back</button></a>
+    
+		
+      <div class="form-group">
+            <label for="msName">Customer name: </label>
+            <input type="text" class="form-control" id="msName" name="full_name">
+		</div>
+     <div class="form-group">
+            <label for="msEmail">E-mail address: </label>
+            <input type="email" class="form-control" id="msEmail" name="email">
+ 
+		</div>
+        <div class="form-group">
+            <label for="msPhone">Phone: </label>
+            <input type="tel" class="form-control" id="msPhone" name="phone">
+        </div>
+            
+        <div class="form-group">
+            <label for="msWeight">Weight in kg: </label>
+            <input type="text" class="form-control" id="msWeight" name="weight">
+        </div>
+        
+        <div class="form-group">
+            <label for="msHeight">Height in cm: </label>
+            <input type="text" class="form-control" id="msHeight" name="height">
+        </div>
+        
+        
+       <b> Stance: </b>
+  <div class="form-group" data-toggle="buttons">
+    <label for="msStance" class="btn btn-primary active">
+      <input name="Stance" class="form-control" id="normal" type="radio" value="normal"> Normal
+    </label>
+    <label class="btn btn-primary">
+      <input name="Stance" class="form-control" id="erect" type="radio" value="Erect"> Erect
+    </label>
+    <label class="btn btn-primary">
+      <input name="Stance" class="form-control" id="forward" type="radio" value="forward"> Forward leaning
+    </label>
+  </div>
+
+
+
+       <b> Shoulder: </b>
+  <div class="form-group" data-toggle="buttons">
+    <label for="msStance" class="btn btn-primary active">
+      <input name="Shoulder" class="form-control" id="normal" type="radio" value="normal"> Normal
+    </label>
+    <label class="btn btn-primary">
+      <input name="Shoulder" class="form-control" id="erect" type="radio" value="Erect"> Erect
+    </label>
+    <label class="btn btn-primary">
+      <input name="Shoulder" class="form-control" id="forward" type="radio" value="forward"> Forward leaning
+    </label>
+  </div>
+
+
+
+  
+        <b> Chest: </b>
+			  <div class="form-group" data-toggle="buttons">
+    <label for="msChest" class="btn btn-primary active">
+      <input name="Chest" class="form-control" id="normal" type="radio" value="normal"> Normal
+    </label>
+    <label class="btn btn-primary">
+      <input name="Chest" class="form-control" id="thin" type="radio" value="Erect"> thin
+    </label>
+    <label class="btn btn-primary">
+      <input name="Chest" class="form-control" id="large" type="radio" value="erect"> large
+    </label>
+	<label class="btn btn-primary">
+      <input name="Chest" class="form-control" id="muscular" type="radio" value="erect"> muscular
+    </label>
+  </div>
+
+
+    
+
+	<b> Stomach: </b>
+	<div class="form-group" data-toggle="buttons">
+    <label for="msStomach" class="btn btn-primary active">
+      <input name="Stomach" class="form-control" id="normal" type="radio" value="normal"> Normal
+    </label>
+    <label class="btn btn-primary">
+      <input name="Stomach" class="form-control" id="thin" type="radio" value="thin"> thin
+    </label>
+    <label class="btn btn-primary">
+      <input name="Stomach" class="form-control" id="medium" type="radio" value="medium"> Medium
+    </label>
+	<label class="btn btn-primary">
+      <input name="Stomach" class="form-control" id="large" type="radio" value="large"> large
+    </label>
+  </div>
+
+
+
+        <b> Seat: </b>
+			<div class="form-group" data-toggle="buttons">
+    <label for="msSeat" class="btn btn-primary active">
+      <input name="Seat" class="form-control" id="normal" type="radio" value="normal"> Normal
+    </label>
+    <label class="btn btn-primary">
+      <input name="Seat" class="form-control" id="thin" type="radio" value="thin"> thin
+    </label>
+    <label class="btn btn-primary">
+      <input name="Seat" class="form-control" id="large" type="radio" value="large"> large
+    </label>
+	<label class="btn btn-primary">
+      <input name="Seat" class="form-control" id="curved" type="radio" value="curved"> curved
+    </label>
+  </div>
+
+    
+		
+        
+        <div class="form-group">
+            <label for="msFullShoulder">Full shoulder: </label>
+            <input type="number" class="form-control" id="msFullShoulder" name="fullShoulder">
+        </div>
+            
+        <div class="form-group">
+            <label for="msHalfShoulderL">Half shoulder (L): </label>
+            <input type="number" class="form-control" id="msHalfShoulderL" name="halfShoulderL">
+        </div>
+            
+        <div class="form-group">
+            <label for="msHalfShoulderR">Half shoulder (R): </label>
+            <input type="number" class="form-control" id="msHalfShoulderR" name="halfShoulderR">
+        </div>
+        
+        <div class="form-group">
+            <label for="msBackWidth">Back width: </label>
+            <input type="number" class="form-control" id="msBackWidth" name="backWidth">
+        </div>
+        
+        <div class="form-group">
+            <label for="msHalfBackLength">Half back length: </label>
+            <input type="number" class="form-control" id="msHalfBackLength" name="halfBackLength">
+        </div>
+        
+        <div class="form-group">
+            <label for="msFullChest">Full chest: </label>
+            <input type="number" class="form-control" id="msFullChest" name="fullChest">
+        </div>
+        
+        <div class="form-group">
+            <label for="msWaistStomach">Waist (stomach): </label>
+            <input type="number" class="form-control" id="msWaistStomach" name="waistStomach">
+        </div>
+        
+        <div class="form-group">
+            <label for="msTrouserWaist">Trouser waist: </label>
+            <input type="number" class="form-control" id="msTrouserWaist" name="trouserWaist">
+        </div>
+        
+        <div class="form-group">
+            <label for="msHips">Hips: </label>
+            <input type="number" class="form-control" id="msHips" name="hips">
+        </div>
+            
+        <div class="form-group">
+            <label for="msNeck">Neck: </label>
+            <input type="number" class="form-control" id="msNeck" name="neck">
+        </div>
+        
+        <div class="form-group">
+            <label for="msFrontChestWidth">Chest width: </label>
+            <input type="number" class="form-control" id="msFrontChestWidth" name="frontChestWidth">
+        </div>
+               
+        <div class="form-group">
+            <label for="msFullJacketLengthSuit">Full jacket length (suit): </label>
+            <input type="number" class="form-control" id="msFullJacketLengthSuit" name="fullJacketLengthSuit">
+        </div>
+                   
+         <div class="form-group">
+            <label for="msFullJacketLengthCoat">Full jacket length (coat): </label>
+            <input type="number" class="form-control" id="msFullJacketLengthCoat" name="fullJacketLengthCoat">
+        </div>
+                       
+         <div class="form-group">
+            <label for="msLeftSleeve">Left sleeve: </label>
+            <input type="number" class="form-control" id="msLeftSleeve" name="leftSleeve">
+        </div>
+                              
+        <div class="form-group">
+            <label for="msRightSleeve">Right sleeve: </label>
+            <input type="number" class="form-control" id="msRightSleeve" name="rightSleeve">
+        </div>
+                                     
+         <div class="form-group">
+            <label for="msBicep">Bicep: </label>
+            <input type="number" class="form-control" id="msBicep" name="bicep">
+        </div>
+                                            
+         <div class="form-group">
+            <label for="msWrist">Wrist: </label>
+            <input type="number" class="form-control" id="msWrist" name="wrist">
+        </div>
+            
+        <div class="form-group">
+            <label for="msTrouserOutseam">Trouser outseam: </label>
+            <input type="number" class="form-control" id="msTrouserOutseam" name="trouserOutseam">
+        </div>
+               
+        <div class="form-group">
+            <label for="msLegOpening">Leg opening: </label>
+            <input type="number" class="form-control" id="msLegOpening" name="legOpening">
+        </div>
+               
+        <div class="form-group">
+            <label for="msKnee">Knee: </label>
+            <input type="number" class="form-control" id="msKnee" name="knee">
+        </div>
+                   
+        <div class="form-group">
+            <label for="msThigh">Thigh: </label>
+            <input type="number" class="form-control" id="msThigh" name="thigh">
+        </div>
+                   
+        <div class="form-group">
+            <label for="msCrotch">Crotch: </label>
+            <input type="number" class="form-control" id="msCrotch" name="crotch">
+        </div>
+                   
+        <div class="form-group">
+            <label for="msAboveKnee">Above knee: </label>
+            <input type="number" class="form-control" id="msAboveKnee" name="aboveKnee">      
+</div>
+		
+		
+    <button type="submit" class="btn btn-primary">Save</button>
+     <!--   </div>  --> 
+   
+</form>
+<!-- /CUSTOMER -->
+<!-- ORDER -->
+    
+    <form id="frmOrder" role=form>
+        <h2>New Order</h2>
+        <br />
+        <div class="form-group">
+         <a href="#/main"><button type="button" id="back">Back</button></a>
+        
+        
+      </div>
+      </form>
+<!-- /ORDER -->
+<!-- PROFILE -->	
+    <form id="frmProfile" role="form">
+         <h2>Profile</h2>
+          <a href="#/main"><button type="button" id="back">Back</button></a>
+        <br />
+        <div class="form-group">
+            <label for="CompanyName">Company Name</label>
+            <input type="text" class="form-control" id="CompanyName" placeholder="Company Name" name="CompanyName" > 
+
+            <label for="Address">Address</label>
+            <input type="text" class="form-control" id="Address" placeholder="Address" name="Address"   >
+            
+            <label for="City">City</label>
+            <input type="text" class="form-control" id="City" placeholder="City" name="City"          
+            >
+            <label for="Postal Code">PostalCode</label>
+            <input type="text" class="form-control" id="PostalCode" placeholder="Postal Code" name="PostalCode"    
+            >
+            <label for="Country">Country</label>
+            <input type="text" class="form-control" id="Country" placeholder="Country" name="Country">
+			  
+			  
+        <button type="submit" class="btn btn-primary">Update</button>
+     </div> 
+    </form> 
+    <!-- / PROFILE -->
+    <hr />
+	
+
+    <!-- ALERT BOX -->
+	<!--    <div id="alert" class="alert" role="alert">
+         <h4 id="alert-title">You are not logged in</h4>
+
+        <p id="alert-detail"></p>
+    </div>-->
+    <!-- / ALERT BOX -->
+
+</body>
+</html>
