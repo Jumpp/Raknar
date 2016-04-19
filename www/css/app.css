@@ -39,7 +39,7 @@ input, textarea  {
 
 body {
     /* margin: 0.5rem ; */
-    background: grey ;
+    background: white ;
     color: black ;
 }
 
@@ -99,3 +99,5 @@ pre {
     width:1205px;
     height:100px; 
 }
+
+.container .btn-group .active { background-color : red }

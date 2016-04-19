@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+	
+	 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
     <link rel="stylesheet" type="text/css" href="css/app.css">
 	 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	 <link rel="stylesheet" type="text/css" href="css/Normalize.css">
           
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
  
     <script src ="js/app.js"></script>
     <script src="intelxdk.js"></script>
     <script src="cordova.js"></script>
     <script src="xhr.js"></script>
     <script src="xdk/init-dev.js"></script>
+	 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script type="application/javascript" src="lib/jquery.min.js"></script>
-    <script type="application/javascript" src="https://cdn.firebase.com/js/client/1.1.1/firebase.js"></script>
-    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/path.js/0.8.4/path.min.js"></script>
+    <script type="application/javascript" src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+	 <script type="application/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	 <script type="application/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.0.0/jquery.serialize-object.compiled.js"></script>
+	
+	
+	<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/path.js/0.8.4/path.min.js"></script>
     <script type="application/javascript" src="js/app.js"></script>
     <script type="application/javascript" src="js/init-app.js"></script>
-    <script type="application/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.0.0/jquery.serialize-object.compiled.js"></script>
-    <script type="application/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+   <script type="application/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
     
 
@@ -31,33 +42,9 @@
       
     
       
+    </head>
 
-<header class="navbar navbar-static-top navbar-inverse" id="top" role="banner">
-    <div class="container">
-        <div class="navbar-header">
-            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse"> <span class="sr-only">Toggle navigation</span>
- <span class="icon-bar"></span>
- <span class="icon-bar"></span>
- <span class="icon-bar"></span>
 
-            </button> <a href="#" class="navbar-brand">Raknar</a>
-
-        </div>
-        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-            <ul class="nav navbar-nav">
-                <li> <a href="#/">Login</a></li>
-                <li> <a href="#/customer">Customer</a></li>
-                <li> <a href="#/search">Search</a></li>
-                <li> <a href="#/profile">Profile</a></li>
-                <li> <a href="#/logout">Logout</a></li>
-                <li> <a href="#/neworder">New Order</a></li>
-                <li> <a href="#/main">Main</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-</head>
 <body>
 	
 <div id="container" class="container">
@@ -66,22 +53,22 @@
     <form class="form-vertical" id='frmMain' role="form">    
   
 		 
- 		<div class="container">
+ 		<div class="menu">
 		
 		<h1>RAKNAR</h1>
 			
 			<ul>		
-		<li>	<br><a href="#/customer">New Customer</a><br>   </li>
+		<li><a href="#/customer" button type="button" class="btn btn-default btn-block btn-lg">New Customer</a></li>
 				
-	<li>		<br><a href="#/neworder">New Order</a> <br> </li>
+	<li><a href="#/neworder" button type="button" class="btn btn-default btn-block btn-lg">New Order</a></li>
 				
-	<li>		<br><a href="#/search">Search</a><br></li>
+	<li><a href="#/search" button type="button" class="btn btn-default btn-block btn-lg"><span class="glyphicon glyphicon-search"></span>Search</a></li>
 				
-	<li>		<br><a href="#/profile">Profile</a><br></li>
+	<li><a href="#/profile" button type="button" class="btn btn-default btn-block btn-lg">Profile</a></li>
 				
-	<li>		<br><a href="https://upload.wikimedia.org/wikipedia/en/5/5f/Original_Doge_meme.jpg">Measuring Guide</a><br></li>
+	<li><a href="https://upload.wikimedia.org/wikipedia/en/5/5f/Original_Doge_meme.jpg" button type="button" class="btn btn-default btn-block btn-lg">Measuring Guide</a></li>
 				
-	<li>		<br><a href="#/logout">Logout</a><br> </li>
+	<li><a href="#/logout" button type="button" class="btn btn-default btn-block btn-lg">Logout</a></li>
 				
 		 </ul>
 				</div> 
@@ -120,13 +107,21 @@
             <label for="txtPass">Password</label>
             <input type="password" class="form-control" id="txtPass" placeholder="Password" name="password" />
         </div>
+		 
+		     <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox">
+          <label><input type="checkbox"> Remember me</label>
+        </div>
+      </div>
+    </div>
+		 
         <button type="submit" class="btn btn-default btn-block">Login</button>
-        <br />
-        <br />
+
         
     
     </form>
-      </div>
+     
     <!-- / LOGIN -->
     <!-- LOGOUT -->
     <form id="frmLogout" role="form">
@@ -134,34 +129,35 @@
 
     </form>
     <!-- / LOGOUT -->
-    <!-- SEARCH -->
-    
-    
-     <form id="frmSearch" role="form">    
+	<!-- SEARCH -->
+  
+    <form id="frmSearch" role="form">
         <h2>Search</h2>
-
-        <a href="#/main"><button type="button" id="back">Back</button></a>
-    <br>
-    
-    
-    <div id="databaseSearch">
-        <form id=searchForm role=form>
-        <input id="searchBox" type="text" placeholder="Search">
-
-    <br>
-    <button type="submit" id="executeSearch">Search</button>
-    <br>
-    <div id="searchContainer">
-    <!-- This div will change to display the search results -->
+        <br>
+          <a href="#/main"><button type="button" id="back">Back</button></a>
         
-    </div>
-			
-		 
-	</form>
-		   </div>
-
-		 
-    <!-- / SEARCH -->
+         <div id="databaseSearch">
+ 
+        <input id="searchBox" type="search" placeholder="Search">
+                
+       </div>
+ 
+    <button type="submit" class="btn btn-primary">Search</button>
+        
+    <br>
+    <hr>
+ 
+ 
+ 
+    <br>
+    <div class='container' id="showResults">
+        
+</div>
+                
+</form>
+        
+		
+	<!--/ SEARCH -->
    <!-- CUSTOMER -->
    
 	<form id="frmCustomer" role="form">
@@ -170,16 +166,19 @@
 		
         <a href="#/main"><button type="button" id="back">Back</button></a>
     
+		<div class='container' id="showResults"><p>pöö</p> </div>
+		
 		
       <div class="form-group">
             <label for="msName">Customer name: </label>
             <input type="text" class="form-control" id="msName" name="full_name">
-		</div>
-     <div class="form-group">
+        </div>
+        
+        <div class="form-group">
             <label for="msEmail">E-mail address: </label>
             <input type="email" class="form-control" id="msEmail" name="email">
- 
-		</div>
+        </div>
+        
         <div class="form-group">
             <label for="msPhone">Phone: </label>
             <input type="tel" class="form-control" id="msPhone" name="phone">
@@ -193,11 +192,14 @@
         <div class="form-group">
             <label for="msHeight">Height in cm: </label>
             <input type="text" class="form-control" id="msHeight" name="height">
-        </div>
+ 	</div>
+		
+		<br>
         
-        
+          <div class="form-group"> 
+				 
        <b> Stance: </b>
-  <div class="form-group" data-toggle="buttons">
+  <div class="btn-group btn-group-justified" data-toggle="buttons">
     <label for="msStance" class="btn btn-primary active">
       <input name="Stance" class="form-control" id="normal" type="radio" value="normal"> Normal
     </label>
@@ -205,14 +207,14 @@
       <input name="Stance" class="form-control" id="erect" type="radio" value="Erect"> Erect
     </label>
     <label class="btn btn-primary">
-      <input name="Stance" class="form-control" id="forward" type="radio" value="forward"> Forward leaning
+      <input name="Stance" class="form-control" id="forward" type="radio" value="forward"> Forward
     </label>
   </div>
 
 
 
        <b> Shoulder: </b>
-  <div class="form-group" data-toggle="buttons">
+<div class="btn-group btn-group-justified" data-toggle="buttons">
     <label for="msStance" class="btn btn-primary active">
       <input name="Shoulder" class="form-control" id="normal" type="radio" value="normal"> Normal
     </label>
@@ -220,15 +222,15 @@
       <input name="Shoulder" class="form-control" id="erect" type="radio" value="Erect"> Erect
     </label>
     <label class="btn btn-primary">
-      <input name="Shoulder" class="form-control" id="forward" type="radio" value="forward"> Forward leaning
+      <input name="Shoulder" class="form-control" id="forward" type="radio" value="forward"> Forward
     </label>
   </div>
 
-
+<br>
 
   
         <b> Chest: </b>
-			  <div class="form-group" data-toggle="buttons">
+<div class="btn-group btn-group-justified" data-toggle="buttons">
     <label for="msChest" class="btn btn-primary active">
       <input name="Chest" class="form-control" id="normal" type="radio" value="normal"> Normal
     </label>
@@ -247,7 +249,7 @@
     
 
 	<b> Stomach: </b>
-	<div class="form-group" data-toggle="buttons">
+<div class="btn-group btn-group-justified" data-toggle="buttons">
     <label for="msStomach" class="btn btn-primary active">
       <input name="Stomach" class="form-control" id="normal" type="radio" value="normal"> Normal
     </label>
@@ -265,7 +267,7 @@
 
 
         <b> Seat: </b>
-			<div class="form-group" data-toggle="buttons">
+<div class="btn-group btn-group-justified" data-toggle="buttons">
     <label for="msSeat" class="btn btn-primary active">
       <input name="Seat" class="form-control" id="normal" type="radio" value="normal"> Normal
     </label>
@@ -280,7 +282,7 @@
     </label>
   </div>
 
-    
+        </div>    
 		
         
         <div class="form-group">
@@ -397,23 +399,75 @@
             <label for="msAboveKnee">Above knee: </label>
             <input type="number" class="form-control" id="msAboveKnee" name="aboveKnee">      
 </div>
-		
+	
 		
     <button type="submit" class="btn btn-primary">Save</button>
-     <!--   </div>  --> 
+
    
 </form>
 <!-- /CUSTOMER -->
 <!-- ORDER -->
-    
+ 
     <form id="frmOrder" role=form>
         <h2>New Order</h2>
         <br />
-        <div class="form-group">
-         <a href="#/main"><button type="button" id="back">Back</button></a>
-        
-        
+	 <!--  	 
+			  <div class="btn-group">
+  <button type="button" class="btn btn-primary">Pick a product</button>
+  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#">Suit</a></li>
+    <li><a href="#">Blazer</a></li>
+  </ul>
+</div>
+		 <p>tai</p>
+		 
+-->
+  <button type="button" class="btn btn-default  btn-lg btn-block" data-toggle="modal" data-target="#myModal">Suit</button>
+		 <br>
+<button type="button" class="btn btn-default  btn-lg btn-block" data-toggle="modal" data-target="#myModal">Blazer</button>
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Suit</h4>
+        </div>
+        <div class="modal-body">
+			  <h2>Valintoja:</h2>
+			  <h3>jotain</h3>
+			  <h3>jotain</h3>
+			  <h3>jotain</h3>
+			  <h3>jotain</h3>
+			  <h3>jotain</h3>
+			  <h3>jotain</h3>
+			  <h3>jotain</h3>
+			  <h3>jotain</h3>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Save/add</button>
+        </div>
       </div>
+      
+    </div>
+  </div>
+		 
+<button type=button id="suit">Suit</button>
+  <br>
+    <div class='container' id="items">       </div>
+
+        
+        
+      <br>
+		          <a href="#/main"><button type="button" id="back">Back</button></a>
+		 
+        <button type="submit" class="btn btn-primary">Update</button>
       </form>
 <!-- /ORDER -->
 <!-- PROFILE -->	
@@ -437,21 +491,21 @@
             <label for="Country">Country</label>
             <input type="text" class="form-control" id="Country" placeholder="Country" name="Country">
 			  
-			  
+	 </div> 		  
         <button type="submit" class="btn btn-primary">Update</button>
-     </div> 
+    
     </form> 
     <!-- / PROFILE -->
     <hr />
 	
 
     <!-- ALERT BOX -->
-	<!--    <div id="alert" class="alert" role="alert">
+    <div id="alert" class="alert" role="alert">
          <h4 id="alert-title">You are not logged in</h4>
 
         <p id="alert-detail"></p>
-    </div>-->
+    </div>
     <!-- / ALERT BOX -->
-
+</div>
 </body>
 </html>

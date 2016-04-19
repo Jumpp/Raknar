@@ -1,5 +1,8 @@
 (function (jQuery, Firebase, Path) {
-    "use strict";
+/* jshint browser: true *//*globals $:false */
+
+
+	"use strict";
 
     // the main firebase reference
     var rootRef = new Firebase('https://fiery-heat-1643.firebaseio.com/');
@@ -17,34 +20,40 @@
         },
             '#/logout': {
             form: 'frmLogout',
-            controller: 'logout'
+     //       controller: 'logout'
         },
             '#/register': {
             form: 'frmRegister',
-            controller: 'register'
+    //        controller: 'register'
         },
             '#/profile': {
             form: 'frmProfile',
             controller: 'profile',
-   //         authRequired: true // must be logged in to get here
+    //        authRequired: true // must be logged in to get here
         },
             '#/customer':{
             form:'frmCustomer',
             controller: 'customer',
-     //       authRequired: true // must be logged in to get here
+  //          authRequired: true // must be logged in to get here
                 
             },
             '#/neworder':{
             form:'frmOrder',
-       //     authRequired: true // must be logged in to get here
+				controller: 'order',
+  //          authRequired: true // must be logged in to get here
                 
             },
-            '#/search':{
-            form:'frmSearch',
-            controller: 'search',
-        //    authRequired: true // must be logged in to get here
-            },
-    };
+            '#/search': {
+            form: 'frmSearch',
+            controller: 'searchCustomers',
+  //          authRequired: true // must be logged in to get here
+             },
+            '#/oldCustomer': {
+            form: 'frmCustomer',
+            controller: 'oldCustomer',
+ //           authRequired: true // must be logged in to get here
+				}
+				};
 
     // create the object to store our controllers
     var controllers = {};
@@ -57,24 +66,6 @@
     function routeTo(route) {
         window.location.href = '#/' + route;
     }
-
-    // Handle third party login providers
-    // returns a promise
-    function thirdPartyLogin(provider) {
-        var deferred = $.Deferred();
-
-        rootRef.authWithOAuthPopup(provider, function (err, user) {
-            if (err) {
-                deferred.reject(err);
-            }
-
-            if (user) {
-                deferred.resolve(user);
-            }
-        });
-
-        return deferred.promise();
-    };
 
     // Handle Email/Password login
     // returns a promise
@@ -156,6 +147,7 @@
     /// Controllers
     ////////////////////////////////////////
     controllers.Main = function (form) {
+        //Jos tähän ei tuu mitään sisältöä niin tätähän ei kai tarvi?
     };
     
     controllers.login = function (form) {
@@ -176,33 +168,97 @@
     controllers.logout = function (form) {
         rootRef.unauth();
     };
-	
-	
-    controllers.search = function (form) {
-  
-        var customer
-        var customerRef;
+/* Tänhän voi poistaa jos ei halua admin versiota ohjelmasta. Poistetaan ennen julkaisua
+    controllers.register = function (form) {
+
+        // Form submission for registering
+        form.on('submit', function (e) {
+
+            var userAndPass = $(this).serializeObject();
+            var loginPromise = createUserAndLogin(userAndPass);
+            e.preventDefault();
+
+            handleAuthResponse(loginPromise, 'profile');
+
+        });
+
+    };
+*/            
+	controllers.searchCustomers = function (form) {
         
-        // Load Customer info
-        customerRef = rootRef.child('Customers').child('Matti');
-        customerRef.once('value', function (snap) {
-            var customer = snap.val();
+            form.on('submit', function (e) {
+            e.preventDefault();
+        
+            var searchRef = rootRef.child('Customers');
+ 
+            var searchTerm = document.getElementById('searchBox').value;
+            
+            //Clear previous search results
+            document.getElementById("showResults").innerHTML = '';
+                
+            //Search for all customers
+            searchRef.orderByChild('full_name').equalTo(searchTerm).once('value', function (foundMatches) {
+            
+                //Search for customers matching the search term
+ 
+                foundMatches.forEach(function(customerSnapshot){
+                    var customer = customerSnapshot.val();
+                
+                    var customerName = customer.full_name;
+ 
+                    var customerEmail = customer.email;
+                
+                    document.getElementById("showResults").innerHTML += '<div class="result"><a href="#/customer">'+customerName+'</a><br>'+customerEmail+'<br><hr></div>';
+                    
+ 
+                });
+            
+            });
+            });
+        
+        };
+	
+	controllers.order = function (form){
+		var order;
+		var cart=[];
+		var orderRef;
+		
+        orderRef = rootRef.child('orders');
+			
+		document.getElementById("suit").addEventListener("click", function(){
+			cart.push("suit");
+			document.getElementById("items").innerHTML = cart;		
+		});
+		
 
-			  
-			   document.getElementById("searchContainer").innerHTML = (customer.Name);
-		  });
-};
+        form.on('submit', function (e) {
+            e.preventDefault();
+            var orderInfo = $(this).serializeObject();
 
-
+            orderRef.push(cart, function onComplete() {
+        
+                // show the message if write is successful
+                showAlert({
+                    title: 'Successfully saved!',
+                    detail: 'You are still logged in',
+                    className: 'alert-success'
+                });
+            });
+                  routeTo('main');   
+        });
+	};
+	
+	
+	
     controllers.customer= function (form) {
 
-        var customer
+        var customer;
         var customerRef;
         
         // Load Customer info
-        customerRef = rootRef.child('Customers')/*.child('')*/;
+        customerRef = rootRef.child('Customers')/*.child('Matti')*/;
         customerRef.once('value', function (snap) {
-            var user = snap.val();
+            var customer = snap.val();
      //       if (!user) {
     //            return;
       //      }
@@ -252,7 +308,7 @@
             var customerInfo = $(this).serializeObject();
 
             customerRef.push(customerInfo, function onComplete() {
-                routeTo('main');
+              
                 // show the message if write is successful
                 showAlert({
                     title: 'Successfully saved!',
@@ -261,16 +317,18 @@
                 });
 
             });
+              routeTo('neworder');
         });
 
     };
-    
+
+	
     controllers.profile = function (form) {
         // Check the current user
         var user = rootRef.getAuth();
         var userRef;
 
-        // If no current user send to register page
+        // If no current user send to login page
         if (!user) {
             routeTo('login');
             return;
@@ -298,7 +356,6 @@
             var userInfo = $(this).serializeObject();
 
             userRef.set(userInfo, function onComplete() {
-            routeTo('main');
                 // show the message if write is successful
                 showAlert({
                     title: 'Successfully saved!',
@@ -307,11 +364,15 @@
                     
         
                 });
-
+            
             });
+            routeTo('main');
         });
 
     };
+    
+        
+    
 
     /// Routing
     ////////////////////////////////////////
@@ -327,10 +388,7 @@
         // stop executing
         if (formRoute.authRequired && !currentUser) {
             routeTo('');  
-            
-        //////////////////////////
-        //RouteTo('login') Tämä jossain vaiheessa vaihtoon
-        ////////////////////////////
+    
             return;
         }
 
@@ -402,4 +460,4 @@
 
     });
 
-}(window.jQuery, window.Firebase, window.Path))
+}(window.jQuery, window.Firebase, window.Path));
