@@ -1,5 +1,38 @@
+// These variables and functions are outside the ready portion so that the dynamically generated HTML code can use them
+
+var resultObjects = [];
+var searchTerm;
+var loadedSearchItem;
+
+function extractEmails ( text ){
+        return text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
+    }
+
+function setLoadedItem (correctItem){
+    
+loadedSearchItem = correctItem;    
+    
+}
+
+function getKey (resultDiv) {
+        var divID = resultDiv.id;
+        var divAsText = $('#' + divID).text();
+        var processedEmail = extractEmails(divAsText);
+        var j;
+                
+        for(j=0; j < resultObjects.length; j++){
+            if(processedEmail == resultObjects[j].resultEmail){
+                loadedSearchItem = resultObjects[j].resultKey;
+            }
+        }
+         return true;   
+    }
+
 (function (jQuery, Firebase, Path) {
-    "use strict";
+/* jshint browser: true *//*globals $:false */
+
+
+	"use strict";
 
     // the main firebase reference
     var rootRef = new Firebase('https://fiery-heat-1643.firebaseio.com/');
@@ -17,16 +50,16 @@
         },
             '#/logout': {
             form: 'frmLogout',
-            controller: 'logout'
+     //       controller: 'logout'
         },
             '#/register': {
             form: 'frmRegister',
-            controller: 'register'
+    //        controller: 'register'
         },
             '#/profile': {
             form: 'frmProfile',
             controller: 'profile',
-            authRequired: true // must be logged in to get here
+    //        authRequired: true // must be logged in to get here
         },
             '#/customer':{
             form:'frmCustomer',
@@ -36,20 +69,26 @@
             },
             '#/neworder':{
             form:'frmOrder',
+				controller: 'order',
   //          authRequired: true // must be logged in to get here
                 
             },
-       		'#/search': {
+            '#/search': {
             form: 'frmSearch',
             controller: 'searchCustomers',
- //           authRequired: true // must be logged in to get here
-            },
-       		'#/oldCustomer': {
+  //          authRequired: true // must be logged in to get here
+             },
+            '#/oldCustomer': {
             form: 'frmCustomer',
             controller: 'oldCustomer',
  //           authRequired: true // must be logged in to get here
-            }
-    };
+				},
+            '#/oldOrder': {
+            form: 'frmOldOrder',
+            controller: 'oldOrder',
+ //           authRequired: true // must be logged in to get here
+				}
+				};
 
     // create the object to store our controllers
     var controllers = {};
@@ -58,28 +97,14 @@
     var activeForm = null;
 
     var alertBox = $('#alert');
-
+/*    
+    var resultObjects = [];
+    var searchTerm = "Volvo";
+    var loadedSearchItem = "-KFE7lpsUadcFoL0GCMI";
+*/
     function routeTo(route) {
         window.location.href = '#/' + route;
     }
-
-    // Handle third party login providers
-    // returns a promise
-    function thirdPartyLogin(provider) {
-        var deferred = $.Deferred();
-
-        rootRef.authWithOAuthPopup(provider, function (err, user) {
-            if (err) {
-                deferred.reject(err);
-            }
-
-            if (user) {
-                deferred.resolve(user);
-            }
-        });
-
-        return deferred.promise();
-    };
 
     // Handle Email/Password login
     // returns a promise
@@ -161,6 +186,7 @@
     /// Controllers
     ////////////////////////////////////////
     controllers.Main = function (form) {
+        //Jos tähän ei tuu mitään sisältöä niin tätähän ei kai tarvi?
     };
     
     controllers.login = function (form) {
@@ -175,32 +201,13 @@
             handleAuthResponse(loginPromise, 'main');
 
         });
-
-        // Social buttons
-        form.children('.bt-social').on('click', function (e) {
-
-            var $currentButton = $(this);
-            var provider = $currentButton.data('provider');
-            var socialLoginPromise;
-            e.preventDefault();
-
-            socialLoginPromise = thirdPartyLogin(provider);
-            handleAuthResponse(socialLoginPromise, 'profile');
-
-        });
-
-        form.children('#btAnon').on('click', function (e) {
-            e.preventDefault();
-            handleAuthResponse(authAnonymously(), 'profilex');
-        });
-
     };
 
     // logout immediately when the controller is invoked
     controllers.logout = function (form) {
         rootRef.unauth();
     };
-
+/* Tänhän voi poistaa jos ei halua admin versiota ohjelmasta. Poistetaan ennen julkaisua
     controllers.register = function (form) {
 
         // Form submission for registering
@@ -215,83 +222,49 @@
         });
 
     };
-
-    controllers.customer= function (form) {
-
-        // Save user's info to Firebase
+*/            
+	controllers.searchCustomers = function (form) {
+        
         form.on('submit', function (e) {
             e.preventDefault();
-            var customerInfo = $(this).serializeObject();
+            var i = 0;
 
-            customerRef.push(customerInfo, function onComplete() {
-                routeTo('main');
-                // show the message if write is successful
-                showAlert({
-                    title: 'Successfully saved!',
-                    detail: 'You are still logged in',
-                    className: 'alert-success'
-                });
-
-            });
-        });
-
-    };
-    
-    controllers.profile = function (form) {
-        // Check the current user
-        var user = rootRef.getAuth();
-        var userRef;
-
-        // If no current user send to register page
-        if (!user) {
-            routeTo('login');
-            return;
-        }
-
-        // Load user info
-        userRef = rootRef.child('users').child(user.uid);
-        userRef.once('value', function (snap) {
-            var user = snap.val();
-            if (!user) {
-                return;
-            }
-
-            // set the fields
-            form.find('#CompanyName').val(user.CompanyName);
-            form.find('#Address').val(user.Address);
-            form.find('#City').val(user.City);
-            form.find('#PostalCode').val(user.PostalCode);
-            form.find('#Country').val(user.Country);
-        });
-
-        // Save user's info to Firebase
-        form.on('submit', function (e) {
-            e.preventDefault();
-            var userInfo = $(this).serializeObject();
-
-            userRef.set(userInfo, function onComplete() {
-            routeTo('main');
-                // show the message if write is successful
-                showAlert({
-                    title: 'Successfully saved!',
-                    detail: 'You are still logged in',
-                    className: 'alert-success'
+//          If the Orders radio button is chosen, search for Orders  
+/*            if(document.getElementById('radioOrders').checked){
+            
+            var searchRef = rootRef.child('Orders');
+ 
+            searchTerm = document.getElementById('searchBox').value;
+            
+            //Clear previous search results
+            document.getElementById("showResults").innerHTML = '';
+                
+            //Search for all orders
+            searchRef.orderByChild('orderNumber').equalTo(searchTerm).once('value', function (foundMatches) {
+            
+                //Search for orders matching the search term
+ 
+                foundMatches.forEach(function(orderSnapshot){
+                    var order = orderSnapshot.val();
+                
+                    var orderNumber = order.orderNumber;
+                    var orderName = order.full_name;
+                    var orderEmail = order.email;
+                    var orderKey = orderSnapshot.key();
+                
+                    document.getElementById("showResult").innerHTML += '<div class="result" id="result'+i+'" onclick="setLoadedItem(orderKey);")><a href="#/oldOrder">'+orderNumber+'</a><br> '+orderName+'<br>'+orderEmail+'<br><hr></div>';
                     
-        
+                    resultObjects[i] = {resultName:orderName, resultEmail:orderEmail, resultKey:orderKey, resultNumber:orderNumber};
+                    i++;
+ 
                 });
-
+            
             });
-        });
-
-    };
-    
-        controllers.searchCustomers = function (form) {
-        
-            form.on('submit', function (e) {
-            e.preventDefault();
+            }else{*/
         
             var searchRef = rootRef.child('Customers');
-            var searchTerm = document.getElementById('searchBox').value;
+ 
+            searchTerm = document.getElementById('searchBox').value;
             
             //Clear previous search results
             document.getElementById("showResults").innerHTML = '';
@@ -300,31 +273,98 @@
             searchRef.orderByChild('full_name').equalTo(searchTerm).once('value', function (foundMatches) {
             
                 //Search for customers matching the search term
+ 
                 foundMatches.forEach(function(customerSnapshot){
                     var customer = customerSnapshot.val();
                 
                     var customerName = customer.full_name;
                     var customerEmail = customer.email;
+                    var customerKey = customerSnapshot.key();
                 
-                    document.getElementById("showResults").innerHTML += '<div class="result"><a href="#/oldCustomer">'+customerName+'</a><br>'+customerEmail+'<br><hr></div>';
+                    document.getElementById("showResults").innerHTML += '<div class="result" id="result'+i+'" onclick="getKey(this);")><a href="#/oldCustomer">'+customerName+'</a><br> '+customerEmail+'<br><hr></div>';
                     
-
+                    resultObjects[i] = {resultName:customerName, resultEmail:customerEmail, resultKey:customerKey};
+                    i++;
+ 
                 });
             
             });
+//          }  ending the else clause
             });
         
         };
-        
-        
-    controllers.oldCustomer= function (form) {
+	
+	controllers.order = function (form){
+		var order;
+		var cart=[];
+		var orderRef;
+		
+        orderRef = rootRef.child('orders');
+			
+		document.getElementById("suit").addEventListener("click", function(){
+			cart.push("suit");
+			document.getElementById("items").innerHTML = cart;		
+		});
+		
 
-        var customerRef = rootRef.child('Customers');
-        var searchTerm = document.getElementById('searchBox').value;
+        form.on('submit', function (e) {
+            e.preventDefault();
+            var orderInfo = $(this).serializeObject();
+
+            orderRef.push(cart, function onComplete() {
+        
+                // show the message if write is successful
+                showAlert({
+                    title: 'Successfully saved!',
+                    detail: 'You are still logged in',
+                    className: 'alert-success'
+                });
+            });
+                  routeTo('main');   
+        });
+	};
+    
+  controllers.customer= function (form) {
+      
+      //Empty all fields in the Customer form
+      $('#frmCustomer').trigger("reset");
+    
+      var customerRef = rootRef.child('Customers');
+        
+        // Save user's info to Firebase
+        form.on('submit', function (e) {
+            e.preventDefault();
+            var customerInfo = $(this).serializeObject();
+
+            customerRef.push(customerInfo, function onComplete() {
+                routeTo('newOrder');
+                // show the message if write is successful
+                showAlert({
+                    title: 'Successfully saved!',
+                    detail: 'You are still logged in',
+                    className: 'alert-success'
+                });
+
+            });
+        });
+
+    };
+	
+	
+	
+   controllers.oldCustomer= function (form) {
+       
+      //Empty all fields in the Customer form
+      $('#frmCustomer').trigger("reset");
+
+        var customer;
+        var customerRef = rootRef.child('Customers').child(loadedSearchItem);
+       
+//        document.getElementById("showTest").innerHTML = loadedSearchItem + '<br><br>' + resultObjects[0].resultKey;
         
         // Load Customer info
-        customerRef.orderByChild('full_name').equalTo(searchTerm).once('value', function (snap) {
-            var customer = snap.val();
+        customerRef/*orderByChild('full_name').equalTo(searchTerm*/.once('value', function (snap) {
+            customer = snap.val();
 
             // set the fields
             form.find('#msName').val(customer.full_name);
@@ -370,7 +410,7 @@
             e.preventDefault();
             var customerInfo = $(this).serializeObject();
 
-            customerRef.push(customerInfo, function onComplete() {
+            customerRef.update(customerInfo, function onComplete() {
                 routeTo('main');
                 // show the message if write is successful
                 showAlert({
@@ -383,6 +423,78 @@
         });
 
     };
+    
+    controllers.oldOrder = function (form) {
+        
+        //Clear previously shown order
+        document.getElementById("showOrder").innerHTML = '';
+
+        var order;
+        var orderRef = rootRef.child('orders').child(loadedSearchItem);
+        
+        // Load order info
+        orderRef.once('value', function (snap) {
+            order = snap.val();
+        });
+
+//      Enter the order items into showOrder  
+//      document.getElementById("showOrder").innerHTML = ;
+        
+        
+            
+        };
+
+	
+    controllers.profile = function (form) {
+        // Check the current user
+        var user = rootRef.getAuth();
+        var userRef;
+
+        // If no current user send to login page
+        if (!user) {
+            routeTo('login');
+            return;
+        }
+
+        // Load user info
+        userRef = rootRef.child('users').child(user.uid);
+        userRef.once('value', function (snap) {
+            var user = snap.val();
+            if (!user) {
+                return;
+            }
+
+            // set the fields
+            form.find('#CompanyName').val(user.CompanyName);
+            form.find('#Address').val(user.Address);
+            form.find('#City').val(user.City);
+            form.find('#PostalCode').val(user.PostalCode);
+            form.find('#Country').val(user.Country);
+        });
+
+        // Save user's info to Firebase
+        form.on('submit', function (e) {
+            e.preventDefault();
+            var userInfo = $(this).serializeObject();
+
+            userRef.set(userInfo, function onComplete() {
+                // show the message if write is successful
+                showAlert({
+                    title: 'Successfully saved!',
+                    detail: 'You are still logged in',
+                    className: 'alert-success'
+                    
+        
+                });
+            
+            });
+            routeTo('main');
+        });
+
+    };
+    
+        
+    
 
     /// Routing
     ////////////////////////////////////////
@@ -397,11 +509,8 @@
         // current user then go to the register page and
         // stop executing
         if (formRoute.authRequired && !currentUser) {
-            routeTo('register');  
-            
-        //////////////////////////
-        //RouteTo('login') Tämä jossain vaiheessa vaihtoon
-        ////////////////////////////
+            routeTo('');  
+    
             return;
         }
 
@@ -440,9 +549,10 @@
     Path.map("#/register").to(prepRoute);
     Path.map("#/profile").to(prepRoute);
     Path.map("#/customer").to(prepRoute);
+    Path.map("#/oldCustomer").to(prepRoute);
+    Path.map("#/oldOrder").to(prepRoute);
     Path.map("#/neworder").to(prepRoute);
     Path.map("#/search").to(prepRoute);
-    Path.map("#/oldCustomer").to(prepRoute);
     Path.root("#/");
 
     /// Initialize
@@ -474,4 +584,4 @@
 
     });
 
-}(window.jQuery, window.Firebase, window.Path))
+}(window.jQuery, window.Firebase, window.Path));
